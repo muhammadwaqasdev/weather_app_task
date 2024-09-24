@@ -37,6 +37,7 @@ class Weather {
     required this.sunset,
   });
 
+  // Factory method to convert JSON into Weather object
   factory Weather.fromJson(Map<String, dynamic> json) {
     return Weather(
       lon: json['coord']['lon'],
@@ -44,10 +45,10 @@ class Weather {
       main: json['weather'][0]['main'],
       description: json['weather'][0]['description'],
       icon: json['weather'][0]['icon'],
-      temp: json['main']['temp'],
-      feelsLike: json['main']['feels_like'],
-      tempMin: json['main']['temp_min'],
-      tempMax: json['main']['temp_max'],
+      temp: json['main']['temp'] - 273.15,
+      feelsLike: json['main']['feels_like'] - 273.15,
+      tempMin: json['main']['temp_min'] - 273.15,
+      tempMax: json['main']['temp_max'] - 273.15,
       pressure: json['main']['pressure'],
       humidity: json['main']['humidity'],
       windSpeed: json['wind']['speed'],
